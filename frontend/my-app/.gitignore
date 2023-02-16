@@ -65,3 +65,5 @@ storybook-static/
 # .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/react,storybookjs,yarn
+
+/src/bootstrap-5.2.3
