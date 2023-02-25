@@ -1,6 +1,4 @@
 import React, { PureComponent } from 'react'
-//import "../bootstrap-5.2.3/scss/bootstrap.scss"
-
 
 export class Heading extends PureComponent {
   render() {

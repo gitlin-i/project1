@@ -12,6 +12,7 @@ module.exports = {
     "@storybook/addon-actions",
     "@storybook/preset-create-react-app",
     '@storybook/preset-scss',
+    '@react-theming/storybook-addon',
   ],
   "framework": "@storybook/react",
   "core": {

@@ -1,0 +1,28 @@
+.navbar {
+    display: flex;
+    background: white;
+    height: 66px;
+    width: 1024px;
+    outline: auto;
+}
+.navbar-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+nav>div>a {
+    outline: auto;
+}
+
+#account {
+    border-radius: 12px;
+    background-color: white;
+    color: gray;
+    width: 120px;
+    height: 60px;
+    /* border: none; */
+}
+
+.items{
+    display: block;
+}
