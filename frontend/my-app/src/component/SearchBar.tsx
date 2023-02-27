@@ -16,7 +16,7 @@ const StyledDiv = styled.div`
   display:none;
 
   @media (min-width: 744px) {
-    display: block;
+    display: flex;
   }
 `
 const Container = styled.div`
@@ -24,7 +24,7 @@ const Container = styled.div`
     border-radius:1.5rem;
     display:flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: start;
     box-shadow: 0px 6px 10px #e3e1e1;
     &:hover {
     box-shadow: 0px 6px 16px #e3e1e1;
@@ -34,7 +34,7 @@ const Container = styled.div`
 const StyledButton = styled.button`
   display:inline-block;
   background-color: white;
-  width:6rem;
+  width:34%;
   height: 3rem;
   position:relative;
   border-radius: 0px;
@@ -46,7 +46,7 @@ const StyledButton = styled.button`
   &:disabled {
     opacity: 0.6;
   }
-  
+  padding: 0;
 `
 
 
@@ -56,7 +56,7 @@ const LocationButton = styled(StyledButton)`
 `
 const PeriodButton = styled(StyledButton)`
   display:flex;
-  justify-content: space-between;
+  justify-content: start;
   padding: 0;
 `
 
@@ -65,6 +65,7 @@ const VisitorButton = styled(StyledButton)`
   display:flex;
   align-items: center; 
   justify-content:space-between;
+  padding-right:0.5rem;
 `
 const VisitorArea = styled.div`
   display:flex;
@@ -90,6 +91,9 @@ const Bar = styled.span`
 function handleClicked(event:React.MouseEvent) {
   console.log(event.target)
 }
+const ReStyledText = styled(Text)`
+  width:100%;
+`
 
 export default class SearchBar extends PureComponent<SearchBarProps>{
   render() {
@@ -103,13 +107,13 @@ export default class SearchBar extends PureComponent<SearchBarProps>{
           
           <PeriodButton {...props} onClick={handleClicked} >
             <Bar />
-            <Text fontFamily='Noto sans KR' >기간</Text>
+            <ReStyledText fontFamily='Noto sans KR' >기간</ReStyledText>
             <Bar />
           </PeriodButton>
 
           <VisitorButton {...props} onClick={handleClicked}>
             <VisitorArea>
-              <Text fontFamily='Noto sans KR' >인원</Text>
+              <ReStyledText fontFamily='Noto sans KR' >인원</ReStyledText>
             </VisitorArea>
             
             <SearchIconArea {...props} onClick={handleClicked}>

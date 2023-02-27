@@ -29,10 +29,9 @@ const StyledCard = styled.li`
   background-color: white;
   position: static;
   
-  width: 6rem;
+  width:5rem;
   height : 3rem;
   outline:auto;
-  padding: 8em 8em;
 
 
 `
@@ -42,14 +41,14 @@ export default class MainPage extends PureComponent {
     return (
       <React.Fragment>
         <StyledMain>main
-          <StyledCardList>
+          {/* <StyledCardList>
             card list <br/>
             <StyledCard> 123 </StyledCard>
             <StyledCard> 456 </StyledCard>
             <StyledCard> 789 </StyledCard>
             <StyledCard> 012 </StyledCard>
 
-            </StyledCardList>
+            </StyledCardList> */}
         </StyledMain>
       </React.Fragment>
     )

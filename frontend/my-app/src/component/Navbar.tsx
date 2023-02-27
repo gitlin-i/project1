@@ -13,6 +13,9 @@ const StyledNav = styled.nav`
   position: sticky;
   top:0;
   padding: 0px 80px;
+  @media (max-width: 744px) {
+    padding:20px;
+  }
 `
 const NavContainer = styled.div`
   height:100%;
