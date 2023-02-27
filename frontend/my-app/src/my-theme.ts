@@ -5,19 +5,22 @@ import { DefaultTheme } from 'styled-components';
 export interface Theme {
   value: string,
   backgroundColor? : string,
-  font? : Object,
+  font? : Object| string,
   borderRadius? : string,
+  color?: Object | string,
+  size?: Object | string,
 }
 
 // def start
 const themeColor = {
-  primary: "#0080ff",
-  secondary:"#795548",
+  primary: "#038cfc",
+  secondary:"#18a8b8",
   white: "#ffffff",
   gray:'#CCCCCC',
   green: "#0afc32",
   red: "#f23a3a",
   black: "#000000"
+
 }
 
 const size = {
@@ -59,13 +62,29 @@ export const lightTheme : Theme = {
     fontWeight : 700,
     color: themeColor.black,
   },
+  color: themeColor,
+  size: size,
 };
 
 export const darkTheme : Theme = {
+  // 
   value: 'dark',
-  backgroundColor : "#000000",
-  font : Object,
-  borderRadius: "12px",
+  backgroundColor : "#383838",
+  font : {
+    fontSize : size.md,    //16px
+    fontFamily :`'Roboto', 'Noto Serif KR','Noto Sans KR', sans-serif`,
+    lineHeight: {
+      xl:'60px',
+      lg:'54px',
+      md:'36px',
+      sm:'24px',
+      xs:'18px',
+    },
+    fontWeight : 700,
+    color: themeColor.white,
+  },
+  color: themeColor,
+  size: size,
 };
 
 

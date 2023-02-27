@@ -3,43 +3,51 @@ import React, { PureComponent } from 'react'
 import { faCircleUser,faSpa } from '@fortawesome/free-solid-svg-icons'
 import Button from './Button'
 import styled from 'styled-components'
+import SearchBar from './SearchBar'
+import SimpleSearchBar from './SimpleSearchBar'
 
-// import "../css/navbar.css"
 const StyledNav = styled.nav`
   width: 100%;
-  outline: auto;
+  height:5rem;
   background-color: ${props => props.theme.backgroundColor};
-  position:sticky;
+  position: sticky;
   top:0;
-  .navbar-container {
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    padding : 1rem 1rem;
-  }
-  .brand_icon {
-    position: relative;
-    left:1rem;
-    &:hover {
-    }
-  }
-  Button{
-    position: relative;
-    right:1rem;
-  }
+  padding: 0px 80px;
+`
+const NavContainer = styled.div`
+  height:100%;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+`
 
+const AccountButton = styled(Button)`
+  position: relative;
+  padding: 0px 0px;
+  border-radius: 2rem;
+  color:gray;
+  @media (max-width: 744px) {
+    display:none;
+  }
+`
+const StyledA = styled.a`
+  color:${props => props.theme.color.primary};
+  @media (max-width: 744px) {
+    display:none;
+  }
 `
 
 export default class Navbar extends PureComponent {
   render() {
+    const {...props} =this.props;
     return (
       <StyledNav>
-        <div className='navbar-container'>
-
-          <a href='/' className='brand-icon'><FontAwesomeIcon icon={faSpa} size="3x"></FontAwesomeIcon> </a>
-
-          <Button  onClick={() => {} } > <FontAwesomeIcon icon={faCircleUser} size="3x" /> </Button>
-        </div>
+        <NavContainer>
+          <StyledA href='/' ><FontAwesomeIcon icon={faSpa} size="3x"></FontAwesomeIcon> </StyledA>
+          <SearchBar/>
+          <SimpleSearchBar/>
+          <AccountButton  onClick={() => {} } {...props}> <FontAwesomeIcon icon={faCircleUser} size="3x" /> </AccountButton>
+        </NavContainer>
       </StyledNav>
     )
   }

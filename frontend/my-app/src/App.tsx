@@ -1,20 +1,13 @@
 import React from 'react';
 
 import Navbar from './component/Navbar';
-import Button from './component/Button';
-import { lightTheme } from './my-theme';
-import styled, { ThemeProvider } from 'styled-components';
-import Text from './component/Text';
+import { lightTheme,darkTheme } from './my-theme';
+import styled, { ThemeProvider,createGlobalStyle } from 'styled-components';
+import MainPage from './page/MainPage';
 
-const StyledMain = styled.div`
-  width:100vw;
-  height:100vh;
-  background-color: orange;
-  outline:auto;
-  color:purple;
-`
+
 const StyledFooter = styled.div`
-  width:100vw;
+  width:100%;
   height:20vh;
   background-color: purple;
   position:fixed;
@@ -29,7 +22,7 @@ function App() {
     <React.Fragment>
       <ThemeProvider theme={lightTheme}>
         <Navbar />
-        <StyledMain >main</StyledMain>
+        <MainPage />
         <StyledFooter>Footer</StyledFooter>
 
       </ThemeProvider>

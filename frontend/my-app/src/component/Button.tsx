@@ -1,20 +1,23 @@
 import React,{PureComponent} from 'react';
-import styled, { DefaultTheme, ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 export interface ButtonProps {
-  onClick: () => void;
-  children:any;
+  onClick?: () => void;
+  children?:any;
   disabled?: boolean;
   primary?: boolean;
+  secondary? : boolean;
   theme?: any;
 }
 
 const StyledButton = styled.button<ButtonProps>`
-  background-color: ${props => props.theme.backgroundColor};
-  color: gray ;
+  position: relative;
+  background-color: ${props => props.primary? props.theme.color.primary : props.theme.color.white };
   font-size: 1rem;
-  border: none;
+  color: ${props => props.primary ? props.theme.color.white : props.theme.color.secondary};
+  border: ${props => props.secondary? "solid":"none"};
+  border-color: ${props => props.secondary? props.theme.color.secondary: props.theme.color.white };
   border-radius: 16px;
-  padding: 0px 0px;
+  padding: 1rem 2rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   &:hover {
