@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export interface TextProps {
   children? : any;
   color?: string;
-  size? : number;
+  size? : number | string;
   fontFamily?: string ;
   bold?: boolean;
 }

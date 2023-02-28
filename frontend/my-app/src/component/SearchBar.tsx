@@ -113,7 +113,7 @@ export default class SearchBar extends PureComponent<SearchBarProps>{
 
           <VisitorButton {...props} onClick={handleClicked}>
             <VisitorArea>
-              <ReStyledText fontFamily='Noto sans KR' >인원</ReStyledText>
+              <ReStyledText fontFamily='Noto sans KR' size={14}>인원</ReStyledText>
             </VisitorArea>
             
             <SearchIconArea {...props} onClick={handleClicked}>

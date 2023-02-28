@@ -68,12 +68,15 @@ const TextContainer = styled.div`
     height:100%;
 `
 const FilterIconArea = styled.div`
-    width:100%;
-    height:100%;
+    width:60%;
+    height:80%;
     display:flex;
     align-items:center;
     justify-content: center;
     margin:0;
+    outline: auto;
+    outline-color: #a0a0a0;
+    border-radius:2rem;
 `
 
 
@@ -93,7 +96,7 @@ export default class SimpleSearchBar extends PureComponent<SearchBarProps>{
                     </SearchIconArea>
                     <TextContainer>
                         <ReStyledText fontFamily='Noto sans KR' >장소</ReStyledText>
-                        <ReStyledText fontFamily='Noto sans KR'color='gray' >기간, 인원</ReStyledText>
+                        <ReStyledText fontFamily='Noto sans KR'color='gray' size={14} >기간, 인원</ReStyledText>
                     </TextContainer>
                 </SearchButton>
                 <FilterButton>

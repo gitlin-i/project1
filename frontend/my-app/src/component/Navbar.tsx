@@ -14,7 +14,10 @@ const StyledNav = styled.nav`
   top:0;
   padding: 0px 80px;
   @media (max-width: 744px) {
-    padding:20px;
+    padding: 0px 20px;
+  }
+  @media (max-width: 1440px) {
+    padding: 0px 40px;
   }
 `
 const NavContainer = styled.div`
