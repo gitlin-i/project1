@@ -1,12 +1,13 @@
-import React,{PureComponent} from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import { ThemeProps } from '../my-theme';
 export interface ButtonProps {
   onClick?: () => void;
-  children?:any;
+  children?:React.ReactNode;
   disabled?: boolean;
   primary?: boolean;
   secondary? : boolean;
-  theme?: any;
+  theme?: ThemeProps;
 }
 
 const StyledButton = styled.button<ButtonProps>`
@@ -16,7 +17,7 @@ const StyledButton = styled.button<ButtonProps>`
   color: ${props => props.primary ? props.theme.color.white : props.theme.color.secondary};
   border: ${props => props.secondary? "solid":"none"};
   border-color: ${props => props.secondary? props.theme.color.secondary: props.theme.color.white };
-  border-radius: 16px;
+  border-radius: 1rem;
   padding: 1rem 2rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -36,13 +37,13 @@ const StyledButton = styled.button<ButtonProps>`
 `;
 
 
-
-export default class Button extends PureComponent<ButtonProps> {
-  render(): React.ReactNode {
-    const {children,...props} = this.props;
-    return <StyledButton {...props}>
+const Button :React.FC<ButtonProps> = (props) => {
+  const {children,...args} = props;
+    return (
+      <StyledButton {...args}>
        {children}
-       </StyledButton>
-  }
-
+      </StyledButton>
+    )
 }
+
+export default Button

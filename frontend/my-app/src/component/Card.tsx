@@ -6,6 +6,7 @@ const StyledDiv = styled.div`
     display:flex;
     flex-direction:column;
     background-color: white;
+    height: calc(100vh - 11rem - 12vh);
 
 `
 const Img = styled.img`

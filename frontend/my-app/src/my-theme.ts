@@ -1,14 +1,12 @@
-import { DefaultTheme } from 'styled-components';
 
-
-
-export interface Theme {
+export interface ThemeProps {
   value: string,
-  backgroundColor? : string,
-  font? : Object| string,
-  borderRadius? : string,
-  color?: Object | string,
-  size?: Object | string,
+  backgroundColor : string,
+  font : Object| string,
+  color: Object | string,
+  size: Object | string,
+  breakPoints: Object,
+  breakPointsNames: Object,
 }
 
 // def start
@@ -32,20 +30,25 @@ const size = {
 }
 
 const BREAKPOINT_NAMES = {
+  XLARGE: 'xlarge',
   LARGE: 'large',
   MEDIUM: 'medium',
-  SMALL:'small',
+  SMALL: 'small',
+  XSMALL:'xsmall',
 }
 const breakPoints = {
-  [BREAKPOINT_NAMES.SMALL] : 1024,
-
+  [BREAKPOINT_NAMES.XLARGE]: 1130,
+  [BREAKPOINT_NAMES.LARGE] : 950,
+  [BREAKPOINT_NAMES.MEDIUM]: 744, // 
+  [BREAKPOINT_NAMES.SMALL] : 550, // 550~950
+  [BREAKPOINT_NAMES.XSMALL] : 0,//0~550
 }
 //def end
 
 
 
 
-export const lightTheme : Theme = {
+export const lightTheme : ThemeProps = {
   // 
   value: 'light',
   backgroundColor : "#ffffff",
@@ -64,9 +67,11 @@ export const lightTheme : Theme = {
   },
   color: themeColor,
   size: size,
+  breakPoints : breakPoints,
+  breakPointsNames: BREAKPOINT_NAMES,
 };
 
-export const darkTheme : Theme = {
+export const darkTheme : ThemeProps = {
   // 
   value: 'dark',
   backgroundColor : "#383838",
@@ -85,7 +90,58 @@ export const darkTheme : Theme = {
   },
   color: themeColor,
   size: size,
+  breakPoints : breakPoints,
+  breakPointsNames: BREAKPOINT_NAMES,
 };
 
 
 
+// ./src/theme.js
+//////////////////////////////////////////////////////////////
+export const copyTheme = {
+  colors: {
+    background: '#F6F9FC',
+    backgroundInverse: '#7A8997',
+    positive: '#E1FFD4',
+    negative: '#FEDED2',
+    primary: '#FF4785',
+    secondary: '#1EA7FD',
+    tertiary: '#DDDDDD',
+    text: '#222222',
+  },
+  spacing: {
+    padding: {
+      small: 10,
+      medium: 20,
+      large: 30,
+    },
+    borderRadius: {
+      small: 5,
+      default: 10,
+    },
+  },
+  typography: {
+    type: {
+      primary: '"Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif',
+      code: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace',
+    },
+    weight: {
+      regular: '400',
+      bold: '700',
+      extrabold: '800',
+      black: '900',
+    },
+    size: {
+      s1: 12,
+      s2: 14,
+      s3: 16,
+      m1: 20,
+      m2: 24,
+      m3: 28,
+      l1: 32,
+      l2: 40,
+      l3: 48,
+    },
+
+  },
+};

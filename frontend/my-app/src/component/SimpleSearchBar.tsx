@@ -12,7 +12,7 @@ export interface SearchBarProps {
 const StyledDiv = styled.div`
   width: 90vw;
   height:3rem;
-  @media (min-width: 744px) {
+  @media (min-width: ${props => props.theme.breakPoints['medium']}px) {
     display:none;
   }
 `
@@ -68,8 +68,8 @@ const TextContainer = styled.div`
     height:100%;
 `
 const FilterIconArea = styled.div`
-    width:60%;
-    height:80%;
+    width:36px;
+    height:36px;
     display:flex;
     align-items:center;
     justify-content: center;

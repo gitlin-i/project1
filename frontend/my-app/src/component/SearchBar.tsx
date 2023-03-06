@@ -15,7 +15,7 @@ const StyledDiv = styled.div`
   height:3rem;
   display:none;
 
-  @media (min-width: 744px) {
+  @media (min-width: ${props => props.theme.breakPoints['medium']}px) {
     display: flex;
   }
 `
@@ -75,8 +75,8 @@ const VisitorArea = styled.div`
   justify-content: center;
 `
 const SearchIconArea = styled.div`
-  width:40%;
-  height:70%;
+  width:36px;
+  height:36px;
   border-radius : 2rem;
   background-color: ${props => props.theme.color.primary};
   color: white;
@@ -113,7 +113,7 @@ export default class SearchBar extends PureComponent<SearchBarProps>{
 
           <VisitorButton {...props} onClick={handleClicked}>
             <VisitorArea>
-              <ReStyledText fontFamily='Noto sans KR' size={14}>인원</ReStyledText>
+              <ReStyledText fontFamily='Noto sans KR' >인원</ReStyledText>
             </VisitorArea>
             
             <SearchIconArea {...props} onClick={handleClicked}>

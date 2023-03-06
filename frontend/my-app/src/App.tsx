@@ -5,18 +5,8 @@ import { lightTheme,darkTheme } from './my-theme';
 import styled, { ThemeProvider,createGlobalStyle } from 'styled-components';
 import MainPage from './page/MainPage';
 import SubNav from './component/SubNav';
+import Footer from './component/Footer';
 
-
-const StyledFooter = styled.div`
-  width:100%;
-  height:12vh;
-  background-color: purple;
-  position:fixed;
-  bottom:0;
-  outline:auto;
-  color:orange;
-
-`
 
 function App() {
   return (
@@ -25,7 +15,7 @@ function App() {
         <Navbar />
         <SubNav />
         <MainPage />
-        <StyledFooter>Footer</StyledFooter>
+        <Footer>footer</Footer>
 
       </ThemeProvider>
     </React.Fragment>

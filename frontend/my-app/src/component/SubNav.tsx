@@ -7,17 +7,43 @@ const StyledSubNav = styled.div`
     background-color:blue;
     position: sticky;
     top:5rem;
-    @media (max-width: 744px){
-        display:none;
-
-    }
+    z-index:0;
 `
+const Container = styled.div`
+  width:100%;
+  height:100%;
+  padding : 0 80px;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
 
+`
+const Radio_input = styled.input`
+  
+`
 
 export default class SubNav extends PureComponent {
   render() {
     return (
-      <StyledSubNav></StyledSubNav>
+      <StyledSubNav>
+        <Container>
+          <label>
+          <Radio_input type="radio" name='SelectCategory' />
+          입력1
+          </label>
+          
+          <label>
+          <Radio_input type="radio" name='SelectCategory' />
+          입력2
+          </label>
+          <label>
+          <Radio_input type="radio" name='SelectCategory' />
+          입력3
+          </label>
+          
+
+        </Container>
+      </StyledSubNav>
     )
   }
 }

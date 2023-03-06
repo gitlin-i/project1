@@ -10,7 +10,20 @@ import { lightTheme } from '../src/my-theme';
 addDecorator(withThemes(ThemeProvider, [lightTheme]));
 
 
+// const Margindecorator = (Story) => {
+//   return(
+//     <div style={{ margin : '3em'}}>
+//       <Story />
+//     </div>
+//   )
+// }
+// export const decorators = [
+//   Margindecorator,
+// ];
+
+
 export const parameters = {
+  layout: 'fullscreen',
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
     matchers: {
