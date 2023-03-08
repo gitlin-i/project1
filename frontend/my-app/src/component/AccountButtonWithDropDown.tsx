@@ -5,6 +5,7 @@ import { faCircleUser} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import withDropDown from "./withDropDown"
 import MenuItem from "./MenuItem"
+import Text from "./Text"
 const StyledButton = styled(Button)`
   position: relative;
   padding: 0px 0px;
@@ -13,6 +14,8 @@ const StyledButton = styled(Button)`
   @media (max-width: ${props => props.theme.breakPoints['medium']}px) {
     display:none;
   }
+  border: none;
+  outline:none;
 `
 const AccountButtonRaw : React.FC<ButtonProps> = (props) => {
     const {...args} = props;
@@ -25,8 +28,8 @@ const AccountButtonRaw : React.FC<ButtonProps> = (props) => {
 const MenuItems = () => {
   return (
     <React.Fragment>
-      <MenuItem> 회원 가입 </MenuItem>
-      <MenuItem> 로그인 </MenuItem>
+      <MenuItem > <Text bold> 회원 가입 </Text>  </MenuItem>
+      <MenuItem> <Text> 로그인 </Text> </MenuItem>
     </React.Fragment>
   )
 }

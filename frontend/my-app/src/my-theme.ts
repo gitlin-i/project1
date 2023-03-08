@@ -54,7 +54,7 @@ export const lightTheme : ThemeProps = {
   backgroundColor : "#ffffff",
   font : {
     fontSize : size.md,    //16px
-    fontFamily :`'Roboto', 'Noto Serif KR','Noto Sans KR', sans-serif`,
+    fontFamily :`'Noto Sans KR', 'Roboto', 'Noto Serif KR', sans-serif`,
     lineHeight: {
       xl:'60px',
       lg:'54px',
@@ -77,7 +77,7 @@ export const darkTheme : ThemeProps = {
   backgroundColor : "#383838",
   font : {
     fontSize : size.md,    //16px
-    fontFamily :`'Roboto', 'Noto Serif KR','Noto Sans KR', sans-serif`,
+    fontFamily :`'Noto Sans KR', 'Roboto', 'Noto Serif KR', sans-serif`,
     lineHeight: {
       xl:'60px',
       lg:'54px',

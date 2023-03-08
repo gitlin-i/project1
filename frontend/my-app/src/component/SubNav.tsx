@@ -1,13 +1,19 @@
-import React, { PureComponent } from 'react'
+import React, { useState,useEffect } from 'react'
 import styled from 'styled-components'
 
-const StyledSubNav = styled.div`
+interface SubNavProps {
+  isSticky : boolean;
+}
+
+const StyledSubNav = styled.div<SubNavProps>`
     width:100%;
     height:6rem;
-    background-color:blue;
+    background-color:white;
     position: sticky;
-    top:5rem;
+    top:calc(5rem - 20px);
     z-index:0;
+    padding-block-start: 20px; 
+    box-shadow: ${({isSticky}) => isSticky? "0px 6px 10px #c7c7c7;" : ""};
 `
 const Container = styled.div`
   width:100%;
@@ -22,29 +28,42 @@ const Radio_input = styled.input`
   
 `
 
-export default class SubNav extends PureComponent {
-  render() {
-    return (
-      <StyledSubNav>
-        <Container>
-          <label>
-          <Radio_input type="radio" name='SelectCategory' />
-          입력1
-          </label>
-          
-          <label>
-          <Radio_input type="radio" name='SelectCategory' />
-          입력2
-          </label>
-          <label>
-          <Radio_input type="radio" name='SelectCategory' />
-          입력3
-          </label>
-          
+const SubNav = () => {
+  const [isSticky, setIsSticky] = useState(false);
 
-        </Container>
-      </StyledSubNav>
-    )
-  }
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 0);
+    };
+    
+    window.addEventListener('scroll',handleScroll);
+    return () => {
+      window.removeEventListener('scroll',handleScroll);
+    }
+  }, [])
+  
+  return (
+    <StyledSubNav isSticky={isSticky}>
+      <Container>
+        <label>
+        <Radio_input type="radio" name='SelectCategory' />
+        입력1
+        </label>
+        
+        <label>
+        <Radio_input type="radio" name='SelectCategory' />
+        입력2
+        </label>
+        <label>
+        <Radio_input type="radio" name='SelectCategory' />
+        입력3
+        </label>
+      </Container>
+    </StyledSubNav>
+  )
 }
+
+export default SubNav
+
+
 

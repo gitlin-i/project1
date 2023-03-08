@@ -16,7 +16,7 @@ const StyledDiv = styled.div`
   display:none;
 
   @media (min-width: ${props => props.theme.breakPoints['medium']}px) {
-    display: flex;
+    display: block;
   }
 `
 const Container = styled.div`
@@ -29,9 +29,13 @@ const Container = styled.div`
     &:hover {
     box-shadow: 0px 6px 16px #e3e1e1;
   }
+  > * {
+    flex: 0 0 auto;
+  }
 
 `
 const StyledButton = styled.button`
+
   display:inline-block;
   background-color: white;
   width:34%;

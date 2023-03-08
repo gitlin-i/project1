@@ -5,20 +5,26 @@ import styled from 'styled-components';
 interface DropDownProps {
     isOpenDropDownMenu: boolean;
 }
-
+const Div = styled.div`
+    position: relative;
+`
 const DropDownMenu = styled.div<DropDownProps>`
     display: ${({isOpenDropDownMenu}) => (isOpenDropDownMenu ? "block" : "none")};
     width:16rem;
     position:absolute;
-    z-index: 13;
+    top:4rem;
+    right:0px;
     box-shadow: 0px 6px 10px #e3e1e1;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
+    background-color: white;
+    
 `
 const DropDownMenuContainer = styled.ul`
     padding: 0.5rem 0  0.5rem 0;
-    display:relative;
+    display:flex;
     flex-direction:column;
     align-items:center;
+    margin:0;
     
 `
 
@@ -35,14 +41,14 @@ const withDropDown  = <P extends object>(
             }
             const {  ...rest} = props;
             return (
-                <div>
+                <Div >
                     <WrappedComponent onClick={handleToggle} {...(rest as P) }></WrappedComponent>
                     <DropDownMenu isOpenDropDownMenu={isOpenDropDownMenu}>
-                        <DropDownMenuContainer>
+                        <DropDownMenuContainer >
                             {Items}
                         </DropDownMenuContainer>
                     </DropDownMenu>
-                </div>
+                </Div>
             )
         }
     }

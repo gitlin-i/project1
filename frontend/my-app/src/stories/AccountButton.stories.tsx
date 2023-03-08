@@ -9,14 +9,10 @@ export default {
   //   argTypes: {
   //      onClick: { action: 'clicked' },
   //  },
-  decorators: [(Story) => {
-    return(
-      <div style={{ margin : '3em'}}>
-        <Story />
-      </div>
-    )
-  },
-],
+   parameters: {
+    layout: 'centered',
+   }
+
 } as ComponentMeta<typeof AccountButton>;
 
 

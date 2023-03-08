@@ -2,7 +2,7 @@ import React from 'react';
 
 import Navbar from './component/Navbar';
 import { lightTheme,darkTheme } from './my-theme';
-import styled, { ThemeProvider,createGlobalStyle } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import MainPage from './page/MainPage';
 import SubNav from './component/SubNav';
 import Footer from './component/Footer';
