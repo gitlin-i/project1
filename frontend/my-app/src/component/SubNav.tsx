@@ -13,19 +13,29 @@ const StyledSubNav = styled.div<SubNavProps>`
     top:calc(5rem - 20px);
     z-index:0;
     padding-block-start: 20px; 
-    box-shadow: ${({isSticky}) => isSticky? "0px 6px 10px #c7c7c7;" : ""};
+    box-shadow: ${({isSticky}) => isSticky? "0px 2px 2px #e3e3e3;" : ""};
 `
 const Container = styled.div`
   width:100%;
   height:100%;
-  padding : 0 80px;
+  padding: 0px ${props => props.theme.layoutPadding['p0']}px;
+  
+  @media (min-width: ${props => props.theme.breakPoints['medium']}px) {
+    padding: 0px ${props => props.theme.layoutPadding['p744']}px;
+  }
+  @media (min-width: 1440px) {
+    padding: 0px ${props => props.theme.layoutPadding['p1440']}px;
+  }
   display:flex;
   align-items: center;
   justify-content: space-between;
 
 `
 const Radio_input = styled.input`
-  
+
+  &:active {
+    border-bottom: solid 4px black;
+  }
 `
 
 const SubNav = () => {

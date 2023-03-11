@@ -11,14 +11,14 @@ const StyledMain = styled.main`
   justify-content: space-between;
   align-items: center; */
   z-index:-1;
-  padding: 0px 80px;
-  @media (max-width: ${props => props.theme.breakPoints['medium']}px) {
-    padding:0px 20px;
-  }
-  @media (max-width: 1440px) {
-    padding:0px 40px;
-  }
+  padding: 0px ${props => props.theme.layoutPadding['p0']}px;
   
+  @media (min-width: ${props => props.theme.breakPoints['medium']}px) {
+    padding: 0px ${props => props.theme.layoutPadding['p744']}px;
+  }
+  @media (min-width: 1440px) {
+    padding: 0px ${props => props.theme.layoutPadding['p1440']}px;
+  }
 `
 const StyledCardList = styled.div`
   display: grid;

@@ -7,6 +7,7 @@ export interface ThemeProps {
   size: Object | string,
   breakPoints: Object,
   breakPointsNames: Object,
+  layoutPadding: Object,
 }
 
 // def start
@@ -43,6 +44,11 @@ const breakPoints = {
   [BREAKPOINT_NAMES.SMALL] : 550, // 550~950
   [BREAKPOINT_NAMES.XSMALL] : 0,//0~550
 }
+const layoutPadding = {
+  p0 : 24,
+  p744 : 40,
+  p1440 : 80,
+}
 //def end
 
 
@@ -69,6 +75,7 @@ export const lightTheme : ThemeProps = {
   size: size,
   breakPoints : breakPoints,
   breakPointsNames: BREAKPOINT_NAMES,
+  layoutPadding: layoutPadding,
 };
 
 export const darkTheme : ThemeProps = {
@@ -92,6 +99,7 @@ export const darkTheme : ThemeProps = {
   size: size,
   breakPoints : breakPoints,
   breakPointsNames: BREAKPOINT_NAMES,
+  layoutPadding: layoutPadding,
 };
 
 

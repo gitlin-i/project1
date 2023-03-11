@@ -31,7 +31,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "mockserver": "json-server --watch --port 3001 db.json"
   },
   "browserslist": {
     "production": [
@@ -59,6 +60,7 @@
     "@storybook/testing-library": "^0.0.13",
     "babel-plugin-named-exports-order": "^0.0.2",
     "css-loader": "^6.7.3",
+    "json-server": "^0.17.2",
     "prop-types": "^15.8.1",
     "react-docgen-typescript-plugin": "^1.0.5",
     "sass-loader": "^13.2.0",

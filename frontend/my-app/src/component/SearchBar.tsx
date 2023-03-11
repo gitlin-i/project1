@@ -6,10 +6,11 @@ import Text from './Text';
 
 
 export interface SearchBarProps {
-  onClick? : () => void,
+  onClick? : () => void;
+  isExpand ?: boolean;
 }
 // div <- form
-const StyledDiv = styled.div`
+const StyledDiv = styled.div<SearchBarProps>`
   width: 36vw;
   max-width:352px;
   height:3rem;
@@ -17,6 +18,7 @@ const StyledDiv = styled.div`
 
   @media (min-width: ${props => props.theme.breakPoints['medium']}px) {
     display: block;
+
   }
 `
 const Container = styled.div`
@@ -92,35 +94,32 @@ const Bar = styled.span`
   height:50%;
   border-left: 1px solid #ccc;
 `
-function handleClicked(event:React.MouseEvent) {
-  console.log(event.target)
-}
 const ReStyledText = styled(Text)`
   width:100%;
 `
 
 export default class SearchBar extends PureComponent<SearchBarProps>{
   render() {
-    const {...props} = this.props;
+    const {onClick,...props} = this.props;
     return (
       <StyledDiv>
         <Container>
-          <LocationButton {...props} onClick={handleClicked}>
+          <LocationButton {...props} onClick={onClick}>
             <Text fontFamily='Noto sans KR' >장소</Text>
           </LocationButton>
           
-          <PeriodButton {...props} onClick={handleClicked} >
+          <PeriodButton {...props} onClick={onClick} >
             <Bar />
             <ReStyledText fontFamily='Noto sans KR' >기간</ReStyledText>
             <Bar />
           </PeriodButton>
 
-          <VisitorButton {...props} onClick={handleClicked}>
+          <VisitorButton {...props} onClick={onClick}>
             <VisitorArea>
               <ReStyledText fontFamily='Noto sans KR' >인원</ReStyledText>
             </VisitorArea>
             
-            <SearchIconArea {...props} onClick={handleClicked}>
+            <SearchIconArea {...props} onClick={onClick}>
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </SearchIconArea>
 
