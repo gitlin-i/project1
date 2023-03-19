@@ -20,21 +20,25 @@ const TextArea = styled.div`
     width:100%;
     height:25%;
 `
-
-export default class Card extends PureComponent {
-  render() {
-    return (
-      <StyledDiv>
-        <Img src="/ex.jpg" alt='Card Image...'></Img>
-        <TextArea>
-            <Text fontFamily='Noto Sans KR'>위치</Text>
-            <Text fontFamily='Noto Sans KR' size={14} color="gray">소개</Text>
-            <Text fontFamily='Noto Sans KR' size={14} color="gray">기간</Text>
-            <Text fontFamily='Noto Sans KR' >가격</Text>
-        </TextArea>
-
-
-      </StyledDiv>
-    )
-  }
+interface CardProps {
+  title:string;
+  price: number;
 }
+
+const Card :React.FC<CardProps>= (props) => {
+  return (
+    <StyledDiv>
+      <Img src="/ex.jpg" alt='Card Image...'></Img>
+      <TextArea>
+          <Text fontFamily='Noto Sans KR'>{props.title}</Text>
+          <Text fontFamily='Noto Sans KR' size={14} color="gray">소개</Text>
+          <Text fontFamily='Noto Sans KR' size={14} color="gray">기간</Text>
+          <Text fontFamily='Noto Sans KR' >{props.price}</Text>
+      </TextArea>
+
+
+    </StyledDiv>
+  )
+}
+
+export default Card;

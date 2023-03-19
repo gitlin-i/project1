@@ -31,13 +31,16 @@ const size = {
 }
 
 const BREAKPOINT_NAMES = {
+  XXLARGE: 'xxlarge',
   XLARGE: 'xlarge',
   LARGE: 'large',
   MEDIUM: 'medium',
   SMALL: 'small',
   XSMALL:'xsmall',
+
 }
 const breakPoints = {
+  [BREAKPOINT_NAMES.XXLARGE]: 1440,
   [BREAKPOINT_NAMES.XLARGE]: 1130,
   [BREAKPOINT_NAMES.LARGE] : 950,
   [BREAKPOINT_NAMES.MEDIUM]: 744, // 

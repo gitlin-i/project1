@@ -68,10 +68,6 @@ const ExpandArea = styled.div<NavbarProps>`
   display: ${({isExpand}) => isExpand? "block" : "none"}; 
 
 `
-const Layout = styled.div`
-  width: 33%;
-  height:100%;
-`
 
 
 const Navbar : React.FC<NavbarProps> = (props) => {
@@ -100,21 +96,14 @@ const Navbar : React.FC<NavbarProps> = (props) => {
     <>
       <StyledNav isExpand={isExpand} >
         <NavContainer >
-
           <BrandBox />
           <SearchBar onClick={handleClick} isExpand={isExpand} />
           <SimpleSearchBar/>
-
           <AccountButton />
-
-          
         </NavContainer>
-
-
         <ExpandArea isExpand={isExpand} />
       </StyledNav>
       <Overlay isExpand={isExpand} onClick={handleClick}></Overlay>
-
     </>
   )
 }

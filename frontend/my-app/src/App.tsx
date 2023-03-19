@@ -12,6 +12,7 @@ function App() {
   return (
     <React.Fragment>
       <ThemeProvider theme={lightTheme}>
+        
         <Navbar />
         <SubNav />
         <MainPage />

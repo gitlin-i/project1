@@ -1,6 +1,8 @@
-import React, { PureComponent, Component } from 'react'
+
+import React from 'react'
 import Card from 'src/component/Card'
 import styled from 'styled-components'
+import Api from '../Api';
 
 const StyledMain = styled.main`
   width:100%;
@@ -40,42 +42,37 @@ const StyledCardList = styled.div`
   }
   
 `
-
-export default class MainPage extends PureComponent {
-  render() {
-    return (
-      <React.Fragment>
-        <StyledMain>
-          <StyledCardList>
-            <Card>1</Card>
-            <Card>2</Card>
-            <Card>3</Card>
-            <Card>4</Card>
-            <Card>5</Card>
-            <Card>6</Card>
-            <Card>7</Card>
-            <Card>5</Card>
-
-            <Card>1</Card>
-            <Card>2</Card>
-            <Card>3</Card>
-            <Card>4</Card>
-            <Card>5</Card>
-            <Card>6</Card>
-            <Card>7</Card>
-            <Card>5</Card>
-
-            <Card>1</Card>
-            <Card>2</Card>
-            <Card>3</Card>
-            <Card>4</Card>
-            <Card>5</Card>
-            <Card>6</Card>
-            <Card>7</Card>
-            <Card>5</Card>
-          </StyledCardList>
-        </StyledMain>
-      </React.Fragment>
-    )
-  }
+interface ContentProps {
+  id:number;
+  title:string;
+  price:number;
+  addres:string;
 }
+
+const CardComponet = (Content:ContentProps) => {
+  return (<Card title={Content.title}  price={Content.price} />)
+}
+
+const getArrayData = (data: Array<ContentProps>) => {
+  const temp = data.slice()
+  return temp.map(CardComponet)
+  
+}
+const data = Api.get<ContentProps>("/rooms?_limit=8");
+
+const MainPage: React.FC = (props) => {
+  let Adata :ContentProps[] = []
+
+
+  return (
+    <React.Fragment>
+      <StyledMain>
+        <StyledCardList>
+          {getArrayData(Adata)}
+        </StyledCardList>
+      </StyledMain>
+  </React.Fragment>
+  )
+}
+export {data,getArrayData,CardComponet}
+export default MainPage

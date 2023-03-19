@@ -8,6 +8,8 @@ export interface ButtonProps {
   primary?: boolean;
   secondary? : boolean;
   theme?: ThemeProps;
+  type ?: "submit"|undefined;
+  form ?: string;
 }
 
 const StyledButton = styled.button<ButtonProps>`
@@ -41,6 +43,7 @@ const Button :React.FC<ButtonProps> = (props) => {
   const {children,...args} = props;
     return (
       <StyledButton {...args}>
+        
        {children}
       </StyledButton>
     )
