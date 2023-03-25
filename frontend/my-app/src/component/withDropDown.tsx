@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 
 
@@ -14,9 +14,10 @@ const DropDownMenu = styled.div<DropDownProps>`
     position:absolute;
     top:4rem;
     right:0px;
-    box-shadow: 0px 6px 10px #e3e1e1;
+    box-shadow: 0px 0px 6px #e3e1e1;
     border-radius: 0.5rem;
     background-color: white;
+    z-index:10;
     
 `
 const DropDownMenuContainer = styled.ul`
@@ -36,14 +37,32 @@ const withDropDown  = <P extends object>(
         return function WithDropDown(props: P  ) {
             const [isOpenDropDownMenu , setisOpenDropDownMenu] = useState(false)
             const Items = items()
-            const handleToggle = () => {
+            const handleToggle = (event : React.MouseEvent) => {
+                event.stopPropagation();
                 setisOpenDropDownMenu(!isOpenDropDownMenu)
             }
+            useEffect(() => {
+                const element: HTMLElement | null  = document.getElementById("Drop") 
+
+                const handleOutSideClick = (event :MouseEvent) => { 
+                    
+                    if(!(event.target && element && element.contains(event.target as Node))){
+                        setisOpenDropDownMenu(false);
+                    }
+                }
+
+                if (isOpenDropDownMenu){
+                    window.addEventListener("click",handleOutSideClick)
+                }
+              return () => {
+                window.removeEventListener("click",handleOutSideClick)
+              }
+            }, [isOpenDropDownMenu])
             const {  ...rest} = props;
             return (
                 <Div >
-                    <WrappedComponent onClick={handleToggle} {...(rest as P) }></WrappedComponent>
-                    <DropDownMenu isOpenDropDownMenu={isOpenDropDownMenu}>
+                    <WrappedComponent onClick={handleToggle} {...rest }></WrappedComponent>
+                    <DropDownMenu isOpenDropDownMenu={isOpenDropDownMenu} id="Drop" >
                         <DropDownMenuContainer >
                             {Items}
                         </DropDownMenuContainer>

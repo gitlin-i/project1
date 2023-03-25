@@ -12,10 +12,10 @@ export interface SearchBarProps {
 // div <- form
 const StyledDiv = styled.div<SearchBarProps>`
   width: 36vw;
-  max-width:352px;
+  min-width:390px;
   height:3rem;
   display:none;
-
+  
   @media (min-width: ${props => props.theme.breakPoints['medium']}px) {
     display: block;
 
@@ -24,6 +24,7 @@ const StyledDiv = styled.div<SearchBarProps>`
 const Container = styled.div`
     width:100%;
     border-radius:1.5rem;
+    border:solid 1px #d0d0d0;
     display:flex;
     align-items: center;
     justify-content: start;
@@ -40,7 +41,7 @@ const StyledButton = styled.button`
 
   display:inline-block;
   background-color: white;
-  width:34%;
+  width:33%;
   height: 3rem;
   position:relative;
   border-radius: 0px;
@@ -70,7 +71,7 @@ const VisitorButton = styled(StyledButton)`
   border-radius: 0 1.5rem 1.5rem 0;
   display:flex;
   align-items: center; 
-  justify-content:space-between;
+  justify-content:space-evenly;
   padding-right:0.5rem;
 `
 const VisitorArea = styled.div`
@@ -78,7 +79,7 @@ const VisitorArea = styled.div`
   width:60%;
   height:100%;
   align-items: center;
-  justify-content: center;
+  
 `
 const SearchIconArea = styled.div`
   width:36px;
@@ -96,6 +97,10 @@ const Bar = styled.span`
 `
 const ReStyledText = styled(Text)`
   width:100%;
+  display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 `
 
 export default class SearchBar extends PureComponent<SearchBarProps>{
@@ -105,18 +110,19 @@ export default class SearchBar extends PureComponent<SearchBarProps>{
       <StyledDiv>
         <Container>
           <LocationButton {...props} onClick={onClick}>
-            <Text fontFamily='Noto sans KR' >장소</Text>
+            <Text fontFamily='Noto sans KR' >어디든지</Text>//여행지
+            
           </LocationButton>
           
           <PeriodButton {...props} onClick={onClick} >
             <Bar />
-            <ReStyledText fontFamily='Noto sans KR' >기간</ReStyledText>
+            <ReStyledText fontFamily='Noto sans KR' bold >언제든지 일주일</ReStyledText>
             <Bar />
           </PeriodButton>
 
           <VisitorButton {...props} onClick={onClick}>
             <VisitorArea>
-              <ReStyledText fontFamily='Noto sans KR' >인원</ReStyledText>
+              <ReStyledText fontFamily='Noto sans KR' color='gray' >게스트 추가</ReStyledText>
             </VisitorArea>
             
             <SearchIconArea {...props} onClick={onClick}>

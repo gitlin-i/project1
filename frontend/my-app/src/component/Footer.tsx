@@ -40,7 +40,7 @@ const BottomBox = styled.div`
     justify-content:start;
     align-items:start;
     color:gray;
-    text-align:center;
+    text-align:start;
     overflow:auto;
 `
 
@@ -52,19 +52,17 @@ export default class Footer extends PureComponent {
       <StyledFooter>
         <Footerlayout >
           <TopBox>
-              <Text size={16} color="gray"> 회사명</Text>
-              <Text size={16} color="gray"> 정책</Text>
-              <Text size={16} color="gray"> 공지사항</Text>
-              <Text size={16} color="gray"> 세부정보</Text>
-
+              <Text size={16} color="gray">여행사</Text>
+              <Text size={16} color="gray">개인정보 처리방침</Text>
+              <Text size={16} color="gray">이용약관</Text>
+              <Text size={16} color="gray">사이트맵</Text>
+              <Text size={16} color="gray">한국의 변경된 환불 정책</Text>
+              <Text size={16} color="gray">세부정보</Text>
           </TopBox>
-        
+
         <BottomBox>
           <Text size={10} color="gray">
-            주의사항1.주의사항.주의사항.주의사항.주의사항.주의사항.주의사항.주의사항.주의사항.주의사항.
-            주의사항.주의사항.주의사항.주의사항.주의사항.주의사항.주의사항.주의사항.주의사항.주의사항.
-            주의사항.주의사항.주의사항.주의사항.주의사항.주의사항.주의사항.주의사항.주의사항.주의사항.
-            주의사항.주의사항.주의사항.주의사항.주의사항.주의사항.주의사항.주의사항.주의사항.주의사항2.
+          웹사이트 제공자: @@@ | 이사: @@@ | VAT 번호: @@@ | 사업자 등록 번호: @@@ | 연락처: @@@, 웹사이트, @@@ | 호스팅 서비스 제공업체: 아마존 웹서비스 | @@@는 통신판매 중개자로 @@@을 통하여 게스트와 호스트 사이에 이루어지는 통신판매의 당사자가 아닙니다. @@@을 통하여 예약된 숙소, 체험, 호스트 서비스에 관한 의무와 책임은 해당 서비스를 제공하는 호스트에게 있습니다.
           </Text>
         </BottomBox>
         </Footerlayout>

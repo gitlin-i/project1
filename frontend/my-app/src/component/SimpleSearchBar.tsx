@@ -12,9 +12,6 @@ export interface SearchBarProps {
 const StyledDiv = styled.div`
   width: 90vw;
   height:3rem;
-  @media (min-width: ${props => props.theme.breakPoints['medium']}px) {
-    display:none;
-  }
 `
 const Container = styled.div`
     height:100%;
@@ -74,15 +71,11 @@ const FilterIconArea = styled.div`
     align-items:center;
     justify-content: center;
     margin:0;
-    outline: auto;
-    outline-color: #a0a0a0;
+    border: solid 1px #a0a0a0;
+    /* outline: auto;
+    outline-color: #a0a0a0; */
     border-radius:2rem;
 `
-
-
-function handleClicked(event:React.MouseEvent) {
-  console.log(event.target)
-}
 
 export default class SimpleSearchBar extends PureComponent<SearchBarProps>{
   render() {
@@ -95,8 +88,8 @@ export default class SimpleSearchBar extends PureComponent<SearchBarProps>{
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
                     </SearchIconArea>
                     <TextContainer>
-                        <ReStyledText fontFamily='Noto sans KR' >장소</ReStyledText>
-                        <ReStyledText fontFamily='Noto sans KR'color='gray' size={14} >기간, 인원</ReStyledText>
+                        <ReStyledText fontFamily='Noto sans KR' >어디든지</ReStyledText>
+                        <ReStyledText fontFamily='Noto sans KR'color='gray' size={14} >언제든지 ∙ 게스트 추가 </ReStyledText>
                     </TextContainer>
                 </SearchButton>
                 <FilterButton>

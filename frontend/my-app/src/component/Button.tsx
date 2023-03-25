@@ -27,9 +27,9 @@ const StyledButton = styled.button<ButtonProps>`
     box-shadow: 0px 6px 10px #e3e1e1;
   }
 
-  &:active {
+  /* &:active {
     transform: translateY(0.5rem);
-  }
+  } */
 
   &:disabled {
     opacity: 0.6;

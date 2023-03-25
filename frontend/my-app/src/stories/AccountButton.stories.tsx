@@ -6,9 +6,9 @@ import  AccountButton  from '../component/AccountButtonWithDropDown';
 export default {
     title: 'my-app/AccountButton',
     component: AccountButton,
-  //   argTypes: {
-  //      onClick: { action: 'clicked' },
-  //  },
+    argTypes: {
+       onClick: { action: 'clicked' },
+   },
    parameters: {
     layout: 'centered',
    }
@@ -16,7 +16,7 @@ export default {
 } as ComponentMeta<typeof AccountButton>;
 
 
-const Template: ComponentStory<typeof AccountButton> = (args) => <AccountButton {...args}> 버튼 </AccountButton>
+const Template: ComponentStory<typeof AccountButton> = (args) => <AccountButton > 버튼 </AccountButton>
 
 export const Base = Template.bind({});
 Base.args = {

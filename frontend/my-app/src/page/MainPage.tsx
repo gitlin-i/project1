@@ -1,8 +1,11 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import Card from 'src/component/Card'
 import styled from 'styled-components'
-import Api from '../Api';
+
+import { Room } from 'src/type/type';
+import { selectRooms,fetchRooms, selectRoomsState } from '../reducer/roomsReducers';
+import { useAppDispatch, useAppSelector } from '../hook/hooks';
 
 const StyledMain = styled.main`
   width:100%;
@@ -42,37 +45,38 @@ const StyledCardList = styled.div`
   }
   
 `
-interface ContentProps {
-  id:number;
-  title:string;
-  price:number;
-  addres:string;
+
+
+const ConvertCard = (Content:Room) : React.ReactNode => {
+  return (<Card title={Content.title}  price={Content.price} key={Content.id}  />)
 }
 
-const CardComponet = (Content:ContentProps) => {
-  return (<Card title={Content.title}  price={Content.price} />)
+const ConvertArrayCard = (Contents:Array<Room>) : Array<React.ReactNode> => {
+  return Contents.map(ConvertCard)
 }
 
-const getArrayData = (data: Array<ContentProps>) => {
-  const temp = data.slice()
-  return temp.map(CardComponet)
-  
-}
-const data = Api.get<ContentProps>("/rooms?_limit=8");
+
 
 const MainPage: React.FC = (props) => {
-  let Adata :ContentProps[] = []
+  const dispatch = useAppDispatch();
+  const roomArray = useAppSelector(selectRooms);
+  const roomsStatus = useAppSelector(selectRoomsState);
+  useEffect(() => {
+    if(roomsStatus === 'idle'){
+      dispatch(fetchRooms())
+    }
 
-
+  }, [dispatch, roomsStatus])
+  
+  roomArray.map(ConvertCard)
   return (
     <React.Fragment>
       <StyledMain>
         <StyledCardList>
-          {getArrayData(Adata)}
+          {ConvertArrayCard(roomArray)}
         </StyledCardList>
       </StyledMain>
   </React.Fragment>
   )
 }
-export {data,getArrayData,CardComponet}
 export default MainPage

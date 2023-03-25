@@ -1,6 +1,5 @@
 
 import React, {  useEffect, useState } from 'react'
-
 import styled from 'styled-components'
 import SearchBar from './SearchBar'
 import SimpleSearchBar from './SimpleSearchBar'

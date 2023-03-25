@@ -15,14 +15,19 @@ const getRandomTitle = () => {
     const ind = getRandom(0,title.length-1)
     return title[ind]
 }
+const getRandomTag = () => {
+    const tag = ["beach","arctic","privateRoom"]
+    const ind = getRandom(0,tag.length-1)
+    return tag[ind]
+}
 
 const dummy = (num) => {
     return {
         id: num,
         title : getRandomTitle(),
         price: getRandom(10000,100000),
-        addres: getRandomAddr()
-
+        address: getRandomAddr(),
+        SelectCategory: getRandomTag()
     }
 
 }

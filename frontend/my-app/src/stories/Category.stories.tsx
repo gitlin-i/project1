@@ -13,7 +13,7 @@ export default {
   } as ComponentMeta<typeof Category>;
   const Template : ComponentStory<typeof Category> = (args) => {
   return (
-  <Category>
+  <Category {...args}>
     <FontAwesomeIcon icon={faUmbrellaBeach} size="xl" />
     <Text size={12}>해변</Text>
   </Category>

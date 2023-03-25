@@ -30,6 +30,8 @@ const MenuItems = () => {
     <React.Fragment>
       <MenuItem > <Text bold> 회원 가입 </Text>  </MenuItem>
       <MenuItem> <Text> 로그인 </Text> </MenuItem>
+      <MenuItem> <Text> 로그인 </Text> </MenuItem>
+      <MenuItem> <Text> 로그인 </Text> </MenuItem>
     </React.Fragment>
   )
 }
