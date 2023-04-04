@@ -1,11 +1,15 @@
 
-import React, { useEffect } from 'react'
-import Card from 'src/component/Card'
+import React, { useContext, useEffect, useRef } from 'react'
+import Card from '../component/Card'
 import styled from 'styled-components'
 
-import { Room } from 'src/type/type';
-import { selectRooms,fetchRooms, selectRoomsState } from '../reducer/roomsReducers';
+import { isRoom, PageSetting, Room, Rooms } from '../type/type';
+import { selectRooms,fetchRooms, selectRoomsState, selectRoomsRaw, resetRooms, updateRooms } from '../reducer/roomsReducers';
 import { useAppDispatch, useAppSelector } from '../hook/hooks';
+import { selectPageSetting, setPage } from '../reducer/pageSettingReducers';
+import ReactDOM from 'react-dom';
+import { createPageSetting } from 'src/func/func';
+
 
 const StyledMain = styled.main`
   width:100%;
@@ -46,34 +50,56 @@ const StyledCardList = styled.div`
   
 `
 
+const CreateCards = (num: number,data:Rooms) => {
+  console.log("createCards");
+  const arr = Array(num).fill('').map((_,index)=> {
+    return <Card key={index} content={data.rooms[index]} dataState={data.status} />
+  })
+  return arr;
 
-const ConvertCard = (Content:Room) : React.ReactNode => {
-  return (<Card title={Content.title}  price={Content.price} key={Content.id}  />)
 }
-
-const ConvertArrayCard = (Contents:Array<Room>) : Array<React.ReactNode> => {
-  return Contents.map(ConvertCard)
-}
-
-
 
 const MainPage: React.FC = (props) => {
   const dispatch = useAppDispatch();
-  const roomArray = useAppSelector(selectRooms);
+  const pageSetting :PageSetting = useAppSelector(selectPageSetting)
   const roomsStatus = useAppSelector(selectRoomsState);
-  useEffect(() => {
-    if(roomsStatus === 'idle'){
-      dispatch(fetchRooms())
-    }
-
-  }, [dispatch, roomsStatus])
+  const roomsRaw = useAppSelector(selectRoomsRaw)
   
-  roomArray.map(ConvertCard)
+  useEffect(() => {
+    if(roomsStatus === "idle" && pageSetting.requestCategory != null ){
+      dispatch(fetchRooms(pageSetting))
+    }
+  }, [dispatch,roomsStatus,pageSetting])
+
+//inf_scroll
+  useEffect(()=> {
+
+    const handleScroll = () => {
+      const {scrollTop, offsetHeight} = document.documentElement
+        if( window.innerHeight + scrollTop >= offsetHeight - 10) {
+          
+          const setting = createPageSetting(
+            pageSetting.requestPageStart,
+            pageSetting.requestPageEnd + pageSetting.requestSize,
+            pageSetting.requestSize,
+            pageSetting.requestCategory)
+
+            dispatch(updateRooms(setting))
+        }
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll',handleScroll)
+    }
+  }, [pageSetting])
+
   return (
     <React.Fragment>
       <StyledMain>
-        <StyledCardList>
-          {ConvertArrayCard(roomArray)}
+        <StyledCardList >
+
+          {CreateCards(pageSetting.requestPageEnd, roomsRaw)}
+        
         </StyledCardList>
       </StyledMain>
   </React.Fragment>

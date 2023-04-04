@@ -61,7 +61,7 @@ const withDropDown  = <P extends object>(
             const {  ...rest} = props;
             return (
                 <Div >
-                    <WrappedComponent onClick={handleToggle} {...rest }></WrappedComponent>
+                    <WrappedComponent onClick={handleToggle} {...rest}></WrappedComponent>
                     <DropDownMenu isOpenDropDownMenu={isOpenDropDownMenu} id="Drop" >
                         <DropDownMenuContainer >
                             {Items}

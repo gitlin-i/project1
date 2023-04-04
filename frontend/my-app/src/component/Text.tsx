@@ -7,6 +7,7 @@ export interface TextProps {
   size? : number | string;
   fontFamily?: string ;
   bold?: boolean;
+  loading?:boolean;
 }
 
 const StyledText = styled.span<TextProps>`
@@ -15,15 +16,17 @@ const StyledText = styled.span<TextProps>`
   font-family : ${(props) => props.fontFamily ? props.fontFamily: props.theme.font.fontFamily };
   line-height: ${ (props) => props.theme.font.lineHeight};
   font-weight: ${ (props) => props.bold ? props.theme.font.fontweight : ""};
+  background-color: ${(props) => props.loading? "#aaaaaa":""};
+
 `
 
 export default class Text extends PureComponent<TextProps> {
   render() {
-    const {children, ...props} = this.props;
+    const {children,loading, ...props} = this.props;
     return (
       <StyledText 
       {...props}>
-        {children}
+        {!loading && children}
       </StyledText>
       
     )

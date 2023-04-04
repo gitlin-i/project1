@@ -14,6 +14,7 @@ const Template: ComponentStory<typeof Text> = (args) => {
         <Text {...args}> ABCDabcde 0123 가,나,다 </Text>
         <Text size={24} > ABCDabcde 0123 가,나,다 </Text>
         <Text size={36} color='green' fontFamily='Noto Serif KR'> ABCDabcde 0123 모든</Text>
+        <Text loading color='yellow'> ABCDabcde 0123 모든</Text>
     </React.Fragment>)
 };
 

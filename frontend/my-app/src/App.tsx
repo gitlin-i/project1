@@ -14,14 +14,13 @@ function App() {
   return (
     <React.Fragment>
       <Provider store={store}>
-      <ThemeProvider theme={lightTheme}>
-        <Header />
-        <SubHeader />
-        <CategoryHeader />
-        <MainPage />
-        <Footer>footer</Footer>
-
-      </ThemeProvider>
+        <ThemeProvider theme={lightTheme}>
+          <Header />
+          <SubHeader />
+          <CategoryHeader />
+          <MainPage />
+          <Footer>footer</Footer>
+        </ThemeProvider>
       </Provider>
     </React.Fragment>
   )

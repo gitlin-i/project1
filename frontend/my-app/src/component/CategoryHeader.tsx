@@ -1,6 +1,6 @@
 import { faSliders, faUmbrellaBeach, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import Button from './Button';
 import Category from './Category';
@@ -39,16 +39,18 @@ const FilterArea = styled.div`
   flex-wrap:wrap;
   align-content:center;
   justify-content:center;
+  
 `
 const CategoryList = styled.div`
-  width:100%;
-  height:100%;
-
-  display:grid;
-  grid-template-columns:repeat(14,1fr);
-  grid-template-rows: 100%;
-  grid-column-gap:2rem;
-
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(58px, 1fr));
+  grid-template-rows:100%;
+  grid-column-gap: 2rem;
+  white-space: nowrap; 
+  
+  /* overflow:hidden; */
 `
 
 const RestyledButton = styled(Button)`
@@ -67,23 +69,42 @@ const RestyledButton = styled(Button)`
 interface CategoryHeaderProps {
   isSticky ?: boolean;
 }
-
-const ConvertCategory = ({icondef , presentText ,value} : CategoryProps) :React.ReactNode => {
+export const ConvertCategory = <T extends string>({icondef , presentText ,value} : CategoryProps<T>,index:number) : React.ReactNode => {
+  const isDefault = index === 0;
+  const ref = index === 14;
+  if (value == null){
+    return <></>
+  }
   return (
-    <Category value={value} key={value} >
+    <Category value={value} key={value} defaultchecked={isDefault}>
       <FontAwesomeIcon icon={icondef} />
       <Text size={14}>{presentText}</Text>
     </Category>
   )
 }
 
-export const ConvertArrayCategory  = (Categories : Array<CategoryProps>) :Array<React.ReactNode> => {
+export const ConvertArrayCategory  = (Categories : Array<CategoryProps<any>>) :Array<React.ReactNode> => {
   return Categories.map(ConvertCategory);
 }
+
+// export const setOutsideElement = (someArray: Array<any>,targetIndex:number,ref :React.MutableRefObject<unknown>) => {
+//   ref.current = someArray[targetIndex]
+// }
+
 
 const CategoryHeader : React.FC<CategoryHeaderProps> = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [CategoryNodeArray,setCategoryNodeArray] = useState<React.ReactNode[]>([]);
+  const listRef = useRef<HTMLDivElement>(null)
+  const handleClick = () => {
+    console.log('clicked')
+    const listNode = listRef.current;
+    const labelNode = listNode?.querySelectorAll('label')
+    if(labelNode){
+
+    }
+  }
+  
   useEffect(() => {
     const handleScroll = () => {
       setIsSticky(window.scrollY > 0);
@@ -102,22 +123,22 @@ const CategoryHeader : React.FC<CategoryHeaderProps> = () => {
 
         <CategoriesArea>
           <Form action='http://localhost:3001/rooms' acceptCharset='utf-8' method='get' id='main'>
-            <CategoryList>
+            <CategoryList ref={listRef}>
               {CategoryNodeArray}
             </CategoryList>
-        </Form>
+          </Form>
         </CategoriesArea>
 
 
         <FilterArea>  
-          <RestyledButton type="submit" form="main"> <FontAwesomeIcon icon={faSliders} /> 필터 </RestyledButton>
+          <RestyledButton onClick={handleClick}> <FontAwesomeIcon icon={faSliders} /> 필터 </RestyledButton>
         </FilterArea>
 
       </StyledDiv>
     </StyledCategoryHeader>
   )
 }
-
+//클릭시 화면 밖의 첫 번째 요소를 선택해서, 움직임.
 export default CategoryHeader
 
 

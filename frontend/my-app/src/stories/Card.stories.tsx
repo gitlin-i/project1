@@ -1,4 +1,7 @@
+import { configureStore, createSlice } from '@reduxjs/toolkit';
 import {ComponentStory,ComponentMeta} from '@storybook/react'
+import { Provider } from 'react-redux';
+import { fetchRooms } from '../reducer/roomsReducers';
 
 import Card from '../component/Card'
 
@@ -14,7 +17,6 @@ export default {
     },
   ],
   } as ComponentMeta<typeof Card>;
-
 
 
 const Template : ComponentStory<typeof Card> = (args) => <Card {...args} />;

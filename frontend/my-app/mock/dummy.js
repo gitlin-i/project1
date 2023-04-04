@@ -37,6 +37,6 @@ const dummy = (num) => {
 
 module.exports = function() {
     return {
-        rooms : Array(100).fill('').map((_ ,index) => dummy(index)),
+        rooms : Array(1024).fill('').map((_ ,index) => dummy(index)),
     }
 }

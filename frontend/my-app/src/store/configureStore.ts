@@ -1,10 +1,12 @@
-import { configureStore, createAction, MiddlewareArray } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
+
+import { configureStore,  } from "@reduxjs/toolkit";
+import pageSettingReducers from "../reducer/pageSettingReducers";
 import roomsReducers from "../reducer/roomsReducers"
 
- const store = configureStore({
+const store = configureStore({
     reducer: {
         rooms: roomsReducers,
+        page: pageSettingReducers,
     },
     // middleware: new MiddlewareArray().concat()
 }) 

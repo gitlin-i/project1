@@ -15,7 +15,7 @@ const StyledSpan = styled.span`
     display:block;  
     min-height:24px;  
   }
-
+  white-space:nowrap;
   
 `
 const CategoryIconAndText: React.FC<CategoryProps> = (props) => {

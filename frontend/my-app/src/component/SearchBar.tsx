@@ -110,7 +110,7 @@ export default class SearchBar extends PureComponent<SearchBarProps>{
       <StyledDiv>
         <Container>
           <LocationButton {...props} onClick={onClick}>
-            <Text fontFamily='Noto sans KR' >어디든지</Text>//여행지
+            <Text fontFamily='Noto sans KR' >어디든지</Text>
             
           </LocationButton>
           
