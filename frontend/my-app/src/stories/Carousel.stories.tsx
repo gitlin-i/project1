@@ -16,9 +16,9 @@ export default {
   } as ComponentMeta<typeof Carousel>;
 
 
-const Template : ComponentStory<typeof Carousel> = (args) => <Carousel  />;
+const Template : ComponentStory<typeof Carousel> = (args) => <Carousel {...args} />;
 
 export const Base = Template.bind({});
 Base.args = {
-
+  offsetX: 60
 };

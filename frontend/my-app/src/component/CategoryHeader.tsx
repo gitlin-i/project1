@@ -87,23 +87,14 @@ export const ConvertArrayCategory  = (Categories : Array<CategoryProps<any>>) :A
   return Categories.map(ConvertCategory);
 }
 
-// export const setOutsideElement = (someArray: Array<any>,targetIndex:number,ref :React.MutableRefObject<unknown>) => {
-//   ref.current = someArray[targetIndex]
-// }
-
-
+const handleClick = () => {
+  
+}
 const CategoryHeader : React.FC<CategoryHeaderProps> = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [CategoryNodeArray,setCategoryNodeArray] = useState<React.ReactNode[]>([]);
-  const listRef = useRef<HTMLDivElement>(null)
-  const handleClick = () => {
-    console.log('clicked')
-    const listNode = listRef.current;
-    const labelNode = listNode?.querySelectorAll('label')
-    if(labelNode){
 
-    }
-  }
+
   
   useEffect(() => {
     const handleScroll = () => {
@@ -120,13 +111,11 @@ const CategoryHeader : React.FC<CategoryHeaderProps> = () => {
   return (
     <StyledCategoryHeader isSticky={isSticky}>
       <StyledDiv>
-
         <CategoriesArea>
-          <Form action='http://localhost:3001/rooms' acceptCharset='utf-8' method='get' id='main'>
-            <CategoryList ref={listRef}>
-              {CategoryNodeArray}
-            </CategoryList>
-          </Form>
+
+          <CategoryList >
+            {CategoryNodeArray}
+          </CategoryList>
         </CategoriesArea>
 
 
