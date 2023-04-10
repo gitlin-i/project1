@@ -7,8 +7,8 @@ import { isRoom, PageSetting, Room, Rooms } from '../type/type';
 import { selectRooms,fetchRooms, selectRoomsState, selectRoomsRaw, resetRooms, updateRooms } from '../reducer/roomsReducers';
 import { useAppDispatch, useAppSelector } from '../hook/hooks';
 import { selectPageSetting, setPage } from '../reducer/pageSettingReducers';
-import ReactDOM from 'react-dom';
 import { createPageSetting } from 'src/func/func';
+import {throttle} from 'lodash';
 
 
 const StyledMain = styled.main`
@@ -50,34 +50,39 @@ const StyledCardList = styled.div`
   
 `
 
-const CreateCards = (num: number,data:Rooms) => {
+const CreateCards = (num: number,data:Room[]) => {
   console.log("createCards");
   const arr = Array(num).fill('').map((_,index)=> {
-    return <Card key={index} content={data.rooms[index]} dataState={data.status} />
+    if(data[index]){
+      return <Card key={data[index].id} content={data[index]} />
+    } else {
+      return <Card key={index} />
+    }
   })
   return arr;
-
 }
+
 
 const MainPage: React.FC = (props) => {
   const dispatch = useAppDispatch();
   const pageSetting :PageSetting = useAppSelector(selectPageSetting)
   const roomsStatus = useAppSelector(selectRoomsState);
-  const roomsRaw = useAppSelector(selectRoomsRaw)
-  
-  useEffect(() => {
-    if(roomsStatus === "idle" && pageSetting.requestCategory != null ){
+  const roomsData = useAppSelector(selectRooms)
+
+  useEffect(() => {//페이지 세팅
+    if(roomsStatus === "idle" && pageSetting.requestCategory !== null ){
       dispatch(fetchRooms(pageSetting))
     }
-  }, [dispatch,roomsStatus,pageSetting])
+  }, [roomsStatus,pageSetting])
 
 //inf_scroll
   useEffect(()=> {
 
     const handleScroll = () => {
+
       const {scrollTop, offsetHeight} = document.documentElement
+      if(roomsStatus === 'succeeded'){
         if( window.innerHeight + scrollTop >= offsetHeight - 10) {
-          
           const setting = createPageSetting(
             pageSetting.requestPageStart,
             pageSetting.requestPageEnd + pageSetting.requestSize,
@@ -86,20 +91,20 @@ const MainPage: React.FC = (props) => {
 
             dispatch(updateRooms(setting))
         }
+      }
     }
-    window.addEventListener('scroll', handleScroll)
+    const handleThrottleScroll = throttle(handleScroll,300,);
+    window.addEventListener('scroll', handleThrottleScroll)
     return () => {
-      window.removeEventListener('scroll',handleScroll)
+      window.removeEventListener('scroll',handleThrottleScroll)
     }
-  }, [pageSetting])
+  }, [roomsStatus,pageSetting])
 
   return (
     <React.Fragment>
       <StyledMain>
         <StyledCardList >
-
-          {CreateCards(pageSetting.requestPageEnd, roomsRaw)}
-        
+          {CreateCards(pageSetting.requestPageEnd, roomsData)}
         </StyledCardList>
       </StyledMain>
   </React.Fragment>

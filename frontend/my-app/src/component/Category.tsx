@@ -11,6 +11,7 @@ import { createPageSetting } from '../func/func';
 
 
 const Label = styled.label`
+  display:inline-block;
   cursor: pointer;
   min-height:48px;
   min-width:56px;

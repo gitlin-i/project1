@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import Api from '../Api';
 import { RootState } from '../store/configureStore';
-import { PageSetting, Rooms} from '../type/type'
+import { PageSetting, Rooms,Room} from '../type/type'
 import { setPage } from './pageSettingReducers';
 
 // Define a type for the slice state
@@ -48,8 +48,12 @@ export const roomsSlice  = createSlice({
 })
 
 export const fetchRooms = createAsyncThunk('rooms/fetchRooms' , async (setting :PageSetting ) => {
-  const data = (await Api.get(`/rooms?SelectCategory=${setting.requestCategory}&_start=${setting.requestPageStart}&_end=${setting.requestPageEnd}`)).data
-  return data 
+  const data : Array<Room> = (await Api.get(`/rooms?SelectCategory=${setting.requestCategory}&_start=${setting.requestPageStart}&_end=${setting.requestPageEnd}`)).data
+  if (data.length > 0){
+    return data
+  } else {
+    throw new Error('Failed to fetch rooms: Data is empty');
+  }
 })
 
 export const updateRooms = createAsyncThunk('rooms/updateRooms',async (setting:PageSetting,thunkApi) => {

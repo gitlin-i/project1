@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBed, faSnowflake, faUmbrellaBeach, IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { createPageSetting } from "../func/func";
 import { PageSetting } from "../type/type";
+import { calcViewItem } from "../component/withCarousel";
 test("is Input Checked?",() => {
   let checkedInput = document.createElement("input");
   checkedInput.type="radio"
@@ -65,8 +66,26 @@ test('createPageSetting', ()=>{
   }
   expect(testing1).toStrictEqual(test1)
 
-test(`Ordering Action`,()=>{
+
 
 })
+// test('viewItems',()=>{
+//   const answer = calcViewItem(280,61.6,32)
+//   expect(answer).toBe(3)
+// })
 
+test('testID', ()=> {
+  const dummy = (num:number) => {
+    
+    const digit = String(num).length
+    const string1 = '0'.repeat( 5 - digit) + String(num)
+
+    return {
+        id: string1,
+    }
+  }
+  const a = dummy(1)
+  const b = dummy(123)
+  expect(a).toStrictEqual({id:'00001'})
+  expect(b).toStrictEqual({id:'00123'})
 })

@@ -21,9 +21,13 @@ const getRandomTag = () => {
     return tag[ind]
 }
 
+
 const dummy = (num) => {
+    
+    const digit = String(num).length
+    const newId = '0'.repeat( 5 - digit) + String(num)
     return {
-        id: num,
+        id: newId,
         title : getRandomTitle(),
         price: getRandom(10000,100000),
         address: getRandomAddr(),

@@ -1,10 +1,11 @@
 import Button from "./Button";
 import styled from "styled-components";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface CarouselProps{
   offsetX?: number;
   moveX?:number;
+  length?:number;
 }
 const Window = styled.div`
   /* overflow: hidden;  */
@@ -14,10 +15,11 @@ const Window = styled.div`
   border: 4px solid red;
 
 `;
+
 const Container = styled.ul<CarouselProps>`
 
   position: absolute;
-  width:600px;
+  width: calc( ${props => props.offsetX}px * ${props=>props.length} ); 
   height:100%;
   margin:0;
   padding:0;
@@ -76,7 +78,7 @@ const Carousel : React.FC<CarouselProps> = (props) => {
   return (
     <>
       <Window>
-        <Container moveX={moveX} >
+        <Container moveX={moveX} offsetX={offsetX}length={5} >
           {someContents}
         </Container>
       </Window>

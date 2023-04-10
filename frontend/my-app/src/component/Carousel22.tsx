@@ -7,7 +7,6 @@ import Category from './Category';
 import Text from './Text';
 import { CategoryProps, AllCategories } from './Categories';
 import withCarousel from './withCarousel';
-import { throttle } from 'lodash';
 
 
 const StyledCategoryHeader = styled.div<CategoryHeaderProps>`
@@ -94,16 +93,19 @@ const handleClick = () => {
 }
 const CategoryHeader : React.FC<CategoryHeaderProps> = () => {
   const [isSticky, setIsSticky] = useState(false);
+  const [CategoryNodeArray,setCategoryNodeArray] = useState<React.ReactNode[]>([]);
+
+
   
   useEffect(() => {
     const handleScroll = () => {
       setIsSticky(window.scrollY > 0);
     };
-    const handleThrottleScroll = throttle(handleScroll,300)
-
-    window.addEventListener('scroll',handleThrottleScroll);
+    
+    window.addEventListener('scroll',handleScroll);
+    setCategoryNodeArray(ConvertArrayCategory(AllCategories));
     return () => {
-      window.removeEventListener('scroll',handleThrottleScroll);
+      window.removeEventListener('scroll',handleScroll);
     }
   }, [])
 
@@ -111,7 +113,9 @@ const CategoryHeader : React.FC<CategoryHeaderProps> = () => {
     <StyledCategoryHeader isSticky={isSticky}>
       <StyledDiv>
         <CategoriesArea>
-          {withCarousel(ConvertArrayCategory(AllCategories),58,32,4)}
+
+          {withCarousel(ConvertArrayCategory(AllCategories),62,32,3)}
+
         </CategoriesArea>
 
 
@@ -123,7 +127,7 @@ const CategoryHeader : React.FC<CategoryHeaderProps> = () => {
     </StyledCategoryHeader>
   )
 }
-
+//클릭시 화면 밖의 첫 번째 요소를 선택해서, 움직임.
 export default CategoryHeader
 
 

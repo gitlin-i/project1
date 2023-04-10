@@ -42,7 +42,6 @@ const TextArea = styled.div`
 
 interface CardProps {
   content?: Room;
-  dataState?: 'idle' | 'loading' | 'succeeded' | 'failed';
 }
 interface TextProps{
   isloading?:boolean;
@@ -59,8 +58,9 @@ const StyledText = styled.div<TextProps>`
   content:'';
 `
 const Card :React.FC<CardProps>= (props) => {
-  const {content,dataState, ...rest} = props; 
-  const loading = (dataState !== 'succeeded' || typeof content === 'undefined')
+  const {content, ...rest} = props; 
+  const loading = (typeof content === 'undefined')
+
   return (
     <StyledDiv >
       {loading &&
