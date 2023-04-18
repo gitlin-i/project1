@@ -7,7 +7,6 @@ import Text from './Text';
 
 export interface SearchBarProps {
   onClick? : () => void;
-  isExpand ?: boolean;
 }
 // div <- form
 const StyledDiv = styled.div<SearchBarProps>`

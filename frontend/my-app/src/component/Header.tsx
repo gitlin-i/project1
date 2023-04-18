@@ -1,22 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import AccountButton from './AccountButtonWithDropDown';
 import BrandBox from './BrandBox';
 import SearchBar from './SearchBar';
+import { throttle } from 'lodash';
+import SubHeader from './SubHeader';
 
 interface HeaderProps {
     isExpand?: boolean;
 }
-
-const expandOut = keyframes`
-  from {
-    transform: scaleX(1);
-    
-  }
-    to {
-      transform: scaleX(0);
-  }
-`
 
 const StyledHeader = styled.header<HeaderProps>`
   display:block;
@@ -35,9 +27,9 @@ const StyledHeader = styled.header<HeaderProps>`
   @media (min-width: 1440px) {
     padding: 0px ${props => props.theme.layoutPadding['p1440']}px;
   }
-    @media screen and (max-width: ${(props) => props.theme.breakPoints['medium']}px) {
-        display:none;
-    }
+  @media screen and (max-width: ${(props) => props.theme.breakPoints['medium']}px) {
+    display:none;
+  }
 `
 
 const FlexContainer = styled.div`
@@ -48,8 +40,22 @@ const FlexContainer = styled.div`
   margin:0;
 
 `
+const Flexlayout = styled.div`
+  width:calc(100% / 3);
+  
+`
+const FlexMiddlelayout = styled(Flexlayout)`
+  
+  display:flex;
+  justify-content:center;
 
-const ExpandArea = styled.div<HeaderProps>`
+`
+
+const FlexEndlayout = styled(Flexlayout)`
+  display:flex;
+  justify-content:flex-end;
+`
+const ExpandArea = styled.div`
   
   height:6rem;
   position:relative;
@@ -66,33 +72,10 @@ const ExpandArea = styled.div<HeaderProps>`
   }
 
   background-color:white;
-
-  display: ${({isExpand}) => isExpand? "flex" : "none"}; 
-  justify-content:center;
-  
-
-`
-const Flexlayout = styled.div`
-  width:calc(100% / 3);
-  
-`
-const FlexMiddlelayout = styled(Flexlayout)<HeaderProps>`
-  
-  display: ${({isExpand}) => isExpand? "none" : "flex"}; 
-  justify-content:center;
-  /* animation: ${expandOut} 0.2s ease-in-out; */
-  /* transition: transform 250ms ease, opacity 100ms ease,visibility 0ms 50ms; */
-/* 
-  &:active{
-    transition: transform 250ms ease opacity 100ms ease visibility 0ms 50ms;
-    transform: scale(3,1.4) ;
-  } */
-
-`
-
-const FlexEndlayout = styled(Flexlayout)`
   display:flex;
-  justify-content:flex-end;
+  justify-content:center;
+  
+
 `
 
 const Overlay = styled.div<HeaderProps>`
@@ -107,6 +90,7 @@ z-index:1;
 const Header : React.FC = () => {
   const [isExpand, setIsExpand] = useState(false);
   const [ScrollPosition, setScrollPosition] = useState(0);
+
   const handleClick = () => {
     setIsExpand(!isExpand);
     setScrollPosition(window.scrollY);
@@ -118,37 +102,48 @@ const Header : React.FC = () => {
         setIsExpand(false);
       }
     }
+    const handleThrottleScroll = throttle(handleScroll,300,);
     if (isExpand){
-      window.addEventListener('scroll',handleScroll);
+      window.addEventListener('scroll',handleThrottleScroll);
     }
     
-    return () => { window.removeEventListener('scroll',handleScroll);}
+    return () => { window.removeEventListener('scroll',handleThrottleScroll);}
 
   },[isExpand])
 
 
   return (
     <React.Fragment>
-        <StyledHeader isExpand={isExpand}>
-            <FlexContainer>
-                <Flexlayout>
-                  <BrandBox />
-                </Flexlayout>
-                
-                <FlexMiddlelayout isExpand={isExpand}>
-                  <SearchBar onClick={handleClick} isExpand={isExpand} />
-                </FlexMiddlelayout>
-                <FlexEndlayout>
-                  <AccountButton />
-                </FlexEndlayout>
-                
-                
-            </FlexContainer>
-            <ExpandArea isExpand={isExpand} >
-              <SearchBar onClick={handleClick} isExpand={isExpand} />
-            </ExpandArea>  
-        </StyledHeader>
-        <Overlay isExpand={isExpand} onClick={handleClick}></Overlay>
+      <StyledHeader isExpand={isExpand}>
+        <FlexContainer>
+
+          <Flexlayout>
+            <BrandBox />
+          </Flexlayout>
+
+          <FlexMiddlelayout>
+            {
+              !isExpand &&
+              <SearchBar onClick={handleClick} />
+            }
+
+          </FlexMiddlelayout>
+
+          <FlexEndlayout>
+            <AccountButton />
+          </FlexEndlayout>
+            
+        </FlexContainer>
+
+          {isExpand && 
+          <ExpandArea >
+            <SearchBar onClick={handleClick}  />
+          </ExpandArea> 
+          }
+ 
+      </StyledHeader>
+      <SubHeader /> {/* mobile */}
+      <Overlay isExpand={isExpand} onClick={handleClick}></Overlay>  
     </React.Fragment>
   )
 }

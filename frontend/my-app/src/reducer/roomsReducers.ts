@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import Api from '../Api';
 import { RootState } from '../store/configureStore';
-import { PageSetting, Rooms,Room} from '../type/type'
+import { PageSetting, Rooms,Room} from '../type'
 import { setPage } from './pageSettingReducers';
 
 // Define a type for the slice state

@@ -2,11 +2,13 @@
 import { configureStore,  } from "@reduxjs/toolkit";
 import pageSettingReducers from "../reducer/pageSettingReducers";
 import roomsReducers from "../reducer/roomsReducers"
+import modalReducers from "../reducer/modalReducers";
 
 const store = configureStore({
     reducer: {
         rooms: roomsReducers,
         page: pageSettingReducers,
+        modal: modalReducers
     },
     // middleware: new MiddlewareArray().concat()
 }) 

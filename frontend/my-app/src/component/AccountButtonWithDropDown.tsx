@@ -6,6 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import withDropDown from "./withDropDown"
 import MenuItem from "./MenuItem"
 import Text from "./Text"
+import { useAppDispatch } from "../hook/hooks"
+import { openModal } from "../reducer/modalReducers"
+import LoginModalPage from "./Modal/LoginModal"
 const StyledButton = styled(Button)`
   position: relative;
   padding: 0px 0px;
@@ -17,8 +20,20 @@ const StyledButton = styled(Button)`
   border: none;
   outline:none;
 `
+const StyledA = styled.a`
+  display:grid;
+  text-decoration:none;
+  width:100%;
+  height:100%;
+
+  align-content:center;
+
+`
+
 const AccountButtonRaw : React.FC<ButtonProps> = (props) => {
     const {...args} = props;
+
+
   return (
     <StyledButton {...args}>
         <FontAwesomeIcon icon={faCircleUser} size="3x" />
@@ -26,12 +41,12 @@ const AccountButtonRaw : React.FC<ButtonProps> = (props) => {
   )
 }
 const MenuItems = () => {
+  const dispatch = useAppDispatch()
+  const handleClick = () => { dispatch(openModal({isOpenModal:true, modalTitle:"로그인 또는 회원가입", modalId: 'login'}))}
   return (
-    <React.Fragment>
-      <MenuItem > <Text bold> 회원 가입 </Text>  </MenuItem>
-      <MenuItem> <Text> 로그인 </Text> </MenuItem>
-      <MenuItem> <Text> 로그인 </Text> </MenuItem>
-      <MenuItem> <Text> 로그인 </Text> </MenuItem>
+    <React.Fragment>  
+      <MenuItem > <StyledA onClick={handleClick} > <Text bold> 회원 가입 </Text>  </StyledA> </MenuItem>
+      <MenuItem> <StyledA onClick={handleClick} ><Text> 로그인 </Text> </StyledA> </MenuItem>
     </React.Fragment>
   )
 }

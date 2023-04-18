@@ -1,0 +1,19 @@
+cloud:
+    aws:
+        s3:
+          bucket: dev-my-app
+        credentials:
+            access-key: AKIA4WVIIWO4YT55Q6ED
+            secret-key: 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
+        region:
+            static: ap-northeast-2
+            auto: FALSE
+        stack:
+            auto: FALSE
+
+logging:
+  level:
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: ERROR

@@ -13,7 +13,9 @@ const StyledFooter = styled.div`
   bottom:0;
   border-top: solid 2px;
   color:#e5e5e5;
-
+  @media (max-width: ${props => props.theme.breakPoints['medium']}px) {
+      width: calc(140px * 0.6);
+  }
 `
 const Footerlayout = styled.div`
   width:100%;
@@ -47,6 +49,7 @@ const BottomBox = styled.div`
 
 //#e5e5e5
 export default class Footer extends PureComponent {
+
   render() {
     return (
       <StyledFooter>

@@ -16,6 +16,7 @@ const StyledDiv = styled.div`
   padding-bottom: 0;
     @media screen and (min-width: ${(props) => props.theme.breakPoints['medium']}px) {
         display:none;
+
     }
 `
 

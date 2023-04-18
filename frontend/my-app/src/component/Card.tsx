@@ -3,8 +3,9 @@ import { useAppSelector } from '../hook/hooks'
 import { selectRoomsState } from '../reducer/roomsReducers'
 import styled, { keyframes } from 'styled-components'
 import Text from './Text'
-import { Room } from '../type/type'
+import { Room } from '../type'
 import { AllCategoriesValue } from './Categories'
+import { baseURL, getRandomUrl } from '../aws/awsApi'
 
 const loadingAni = keyframes`
 from {
@@ -76,7 +77,7 @@ const Card :React.FC<CardProps>= (props) => {
       }
       {!loading &&
       <>
-        <Img src="/ex.jpg" alt='Card Image...'></Img>
+        <Img src={getRandomUrl(1,9,baseURL,'jpg')} alt='Card Image...'></Img>
         <TextArea >
         <StyledText ><Text fontFamily='Noto Sans KR' >{props.content?.title}</Text></StyledText>
         <StyledText ><Text fontFamily='Noto Sans KR' >{props.content?.SelectCategory}</Text></StyledText>

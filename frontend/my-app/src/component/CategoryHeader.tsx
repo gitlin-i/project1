@@ -1,6 +1,6 @@
-import { faSliders, faUmbrellaBeach, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faSliders } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState,useEffect, useRef } from 'react'
+import React, { useState,useEffect} from 'react'
 import styled from 'styled-components'
 import Button from './Button';
 import Category from './Category';
@@ -8,6 +8,9 @@ import Text from './Text';
 import { CategoryProps, AllCategories } from './Categories';
 import withCarousel from './withCarousel';
 import { throttle } from 'lodash';
+import { useAppDispatch } from '../hook/hooks';
+import { openModal } from '../reducer/modalReducers';
+
 
 
 const StyledCategoryHeader = styled.div<CategoryHeaderProps>`
@@ -19,6 +22,12 @@ const StyledCategoryHeader = styled.div<CategoryHeaderProps>`
     z-index:0;
     padding: 20px 80px 0 80px;
     box-shadow: ${({isSticky}) => isSticky? "0px 2px 2px #e3e3e3;" : ""};
+
+    @media (max-width: ${props => props.theme.breakPoints['medium']}px) {
+    height:4rem;
+    top: 5rem;
+    padding: 0px 20px 0 20px;
+  }
     
 `
 const StyledDiv = styled.div`
@@ -28,12 +37,16 @@ const StyledDiv = styled.div`
 const CategoriesArea = styled.div`
   display:inline-block;
   width:90%;
+
   height:100%;
   vertical-align:top;
+
+  @media (max-width: ${props => props.theme.breakPoints['medium']}px) {
+    width:100%;
+  }
+
 `
-const Form = styled.form`
-  height:100%;
-`
+
 const FilterArea = styled.div`
   display:inline-flex;
   width:10%;
@@ -41,20 +54,12 @@ const FilterArea = styled.div`
   flex-wrap:wrap;
   align-content:center;
   justify-content:center;
-  
-`
-const CategoryList = styled.div`
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(58px, 1fr));
-  grid-template-rows:100%;
-  grid-column-gap: 2rem;
-  white-space: nowrap; 
-  
-  /* overflow:hidden; */
-`
 
+  @media (max-width: ${props => props.theme.breakPoints['medium']}px) {
+    display:none;
+  }
+  
+`
 const RestyledButton = styled(Button)`
   min-height:48px;
   min-width:80px;
@@ -89,12 +94,18 @@ export const ConvertArrayCategory  = (Categories : Array<CategoryProps<any>>) :A
   return Categories.map(ConvertCategory);
 }
 
-const handleClick = () => {
-  
-}
+
 const CategoryHeader : React.FC<CategoryHeaderProps> = () => {
   const [isSticky, setIsSticky] = useState(false);
-  
+  const [isOpenModal, setIsOpenModal] = useState(false)
+  const dispatch = useAppDispatch();
+
+  const openModal2 = () => {
+    dispatch(openModal({isOpenModal:true, modalTitle:"필터" }))
+  }
+  const closeModal = () => {
+    setIsOpenModal(false)
+  }
   useEffect(() => {
     const handleScroll = () => {
       setIsSticky(window.scrollY > 0);
@@ -116,7 +127,7 @@ const CategoryHeader : React.FC<CategoryHeaderProps> = () => {
 
 
         <FilterArea>  
-          <RestyledButton onClick={handleClick}> <FontAwesomeIcon icon={faSliders} /> 필터 </RestyledButton>
+          <RestyledButton onClick={openModal2}> <FontAwesomeIcon icon={faSliders} /> 필터 </RestyledButton>
         </FilterArea>
 
       </StyledDiv>

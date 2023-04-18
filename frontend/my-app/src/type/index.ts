@@ -26,3 +26,12 @@ export interface PageSetting {
     requestPageEnd:number;
     
 }
+
+
+export interface ModalInterface {
+    modalTitle?: string;
+    children?: React.ReactNode;
+    isOpenModal?: boolean;
+    closeModal?: () => void;
+    modalId?: string | null;
+}

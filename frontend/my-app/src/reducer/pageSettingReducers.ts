@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { RootState } from '../store/configureStore';
-import { PageSetting} from '../type/type'
+import { PageSetting} from '../type'
 
 const initialState: PageSetting = {
     requestCategory: null,

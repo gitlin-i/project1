@@ -62,7 +62,7 @@ const withDropDown  = <P extends object>(
             return (
                 <Div >
                     <WrappedComponent onClick={handleToggle} {...rest}></WrappedComponent>
-                    <DropDownMenu isOpenDropDownMenu={isOpenDropDownMenu} id="Drop" >
+                    <DropDownMenu isOpenDropDownMenu={isOpenDropDownMenu} >
                         <DropDownMenuContainer >
                             {Items}
                         </DropDownMenuContainer>

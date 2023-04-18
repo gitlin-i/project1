@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { ThemeProps } from '../my-theme';
 export interface ButtonProps {
-  onClick?: () => void;
+  onClick?: (e:React.MouseEvent) => void;
   children?:React.ReactNode;
   disabled?: boolean;
   primary?: boolean;

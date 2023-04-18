@@ -1,7 +1,7 @@
 
 import React, { useContext, useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../hook/hooks';
-import { PageSetting } from '../type/type';
+import { PageSetting } from '../type';
 import styled from 'styled-components'
 import {selectPageSetting, setPage}from '../reducer/pageSettingReducers'
 import CategoryIconAndText from './CategoryIconAndText';

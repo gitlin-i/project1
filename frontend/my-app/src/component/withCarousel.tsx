@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components';
 import Button from './Button';
+import { throttle } from 'lodash';
 
 interface CarouselProps{
   ItemWidth?: number;
@@ -23,7 +24,7 @@ const Container = styled.ul<CarouselProps>`
   margin:0;
   padding:0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 58px);
+  grid-template-columns: repeat(auto-fit, minmax(58px,auto));
   grid-template-rows: 100%;
   grid-column-gap: 2rem;
   white-space: nowrap;
@@ -35,8 +36,8 @@ const Container = styled.ul<CarouselProps>`
 
 const ReStyledButton = styled(Button)`
   position:absolute;
-  width :48px;
-  height: 48px;
+  width :36px;
+  height: 36px;
   border-radius:2rem;
   padding: 0;
   display: ${props => props.disabled? 'none':''};
@@ -76,14 +77,14 @@ const withCarousel = (WrappedComponents : React.ReactNode[], itemWidth:number ,g
 
       const [presentItems,setPresentItems] = useState(0) 
       
-
-      useEffect(() => { 
+        
+      useEffect(() => {
         setMoveX((itemWidth + gap) * carouselIndex)
-        if(windowRef.current){
-          const viewWidth :number = windowRef.current.clientWidth
-          setPresentItems( calcViewItem(viewWidth,itemWidth,gap) )
-        }
-
+          if(windowRef.current){
+            const viewWidth :number = windowRef.current.clientWidth
+            setPresentItems( calcViewItem(viewWidth,itemWidth,gap) )
+          }
+      
       }, [carouselIndex])
       const nextClick = () => {
         const rest = WrappedComponents.length - (carouselIndex + presentItems)

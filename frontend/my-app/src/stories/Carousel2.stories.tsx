@@ -22,7 +22,7 @@ const Template : ComponentStory<typeof Carousel22> = (args) => {
 
   return (
     <div style={{width:'282px', height:'100px'}}>
-    {withCarousel(ConvertArrayCategory(AllCategories),58,32,7)}
+    {withCarousel(ConvertArrayCategory(AllCategories),58,32,3)}
     </div>
   )
 };

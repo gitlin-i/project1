@@ -9,8 +9,8 @@ const Item = styled.li`
     list-style : none;
     color: black;
     width:100%;
-    padding: 0.5rem 0;
-  
+    height:2.5rem;
+    cursor: pointer;
 
   &:hover{
     background-color: #e6e6e6;

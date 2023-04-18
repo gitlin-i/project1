@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useRef } from 'react'
 import Card from '../component/Card'
 import styled from 'styled-components'
 
-import { isRoom, PageSetting, Room, Rooms } from '../type/type';
+import { isRoom, PageSetting, Room, Rooms } from '../type';
 import { selectRooms,fetchRooms, selectRoomsState, selectRoomsRaw, resetRooms, updateRooms } from '../reducer/roomsReducers';
 import { useAppDispatch, useAppSelector } from '../hook/hooks';
 import { selectPageSetting, setPage } from '../reducer/pageSettingReducers';

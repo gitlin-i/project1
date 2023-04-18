@@ -7,8 +7,9 @@ import { AllCategories, CategoryProps } from "../component/Categories";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBed, faSnowflake, faUmbrellaBeach, IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { createPageSetting } from "../func/func";
-import { PageSetting } from "../type/type";
+import { PageSetting } from "../type";
 import { calcViewItem } from "../component/withCarousel";
+import { baseURL, getRandomUrl } from "../aws/awsApi";
 test("is Input Checked?",() => {
   let checkedInput = document.createElement("input");
   checkedInput.type="radio"
@@ -88,4 +89,18 @@ test('testID', ()=> {
   const b = dummy(123)
   expect(a).toStrictEqual({id:'00001'})
   expect(b).toStrictEqual({id:'00123'})
+})
+
+
+
+test('getRandomUrl', ()=> {
+  const randomUrl = getRandomUrl(1,3,baseURL,'jpg')
+
+  const url = ["https://dev-my-app.s3.ap-northeast-2.amazonaws.com/ex/1.jpg",
+  "https://dev-my-app.s3.ap-northeast-2.amazonaws.com/ex/2.jpg",
+  "https://dev-my-app.s3.ap-northeast-2.amazonaws.com/ex/3.jpg"]
+
+  console.log(randomUrl)
+  expect(url).toContain(randomUrl);
+  
 })
