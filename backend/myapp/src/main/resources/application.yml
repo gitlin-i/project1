@@ -3,8 +3,8 @@ cloud:
         s3:
           bucket: dev-my-app
         credentials:
-            access-key: AKIA4WVIIWO4YT55Q6ED
-            secret-key: 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
+            access-key: 1
+            secret-key: 1
         region:
             static: ap-northeast-2
             auto: FALSE
